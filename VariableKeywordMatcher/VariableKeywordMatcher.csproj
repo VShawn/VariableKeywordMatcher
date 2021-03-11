@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net45;netcoreapp3.1;net5.0</TargetFrameworks>
+    <AssemblyName>VariableKeywordMatcher</AssemblyName>
+    <RootNamespace>VariableKeywordMatcher</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DocumentationFile>D:\Playground\SharpKeyword\VariableKeywordMatcher\VariableKeywordMatcher.xml</DocumentationFile>
+    <Description>VariableKeywordMatcher is library offering several string-keyword matchers, they allow you match keyword by Initials\Chinese PinYin\Japanese Romaji... You can get the keyword hit position that allow you to highlight the matched words.</Description>
+    <PackageProjectUrl>https://github.com/VShawn/VariableKeywordMatcher</PackageProjectUrl>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <Copyright>GPL</Copyright>
+    <PackageTags>Keyword matcher highlight PinYin</PackageTags>
+    <RepositoryUrl>https://github.com/VShawn/VariableKeywordMatcher</RepositoryUrl>
+  </PropertyGroup>
+
+</Project>

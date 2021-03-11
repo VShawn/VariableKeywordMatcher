@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>netcoreapp3.1;net5.0</TargetFrameworks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Remove="C:\Users\Shawn\.nuget\packages\kawazu\1.0.0\contentFiles\any\netcoreapp3.1\AUTHORS" />
+		<Content Remove="C:\Users\Shawn\.nuget\packages\kawazu\1.0.0\contentFiles\any\netcoreapp3.1\char.bin" />
+		<Content Remove="C:\Users\Shawn\.nuget\packages\kawazu\1.0.0\contentFiles\any\netcoreapp3.1\COPYING" />
+		<Content Remove="C:\Users\Shawn\.nuget\packages\kawazu\1.0.0\contentFiles\any\netcoreapp3.1\matrix.bin" />
+		<Content Remove="C:\Users\Shawn\.nuget\packages\kawazu\1.0.0\contentFiles\any\netcoreapp3.1\sys.dic" />
+		<Content Remove="C:\Users\Shawn\.nuget\packages\kawazu\1.0.0\contentFiles\any\netcoreapp3.1\unk.dic" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Kawazu" Version="1.0.0" />
+		<PackageReference Include="LibNMeCab" Version="0.10.1" />
+		<PackageReference Include="LibNMeCab.IpaDicBin" Version="0.10.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\VariableKeywordMatcher\VariableKeywordMatcher.csproj" />
+	</ItemGroup>
+
+</Project>
