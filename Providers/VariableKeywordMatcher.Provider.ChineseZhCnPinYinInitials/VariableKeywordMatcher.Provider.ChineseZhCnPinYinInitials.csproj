@@ -9,6 +9,10 @@ e.g. "NH" will hit "你好".</Description>
 		<PackageIcon>icon-100.png</PackageIcon>
 		<RepositoryUrl>https://github.com/VShawn/VariableKeywordMatcher</RepositoryUrl>
 		<PackageTags>Keyword matcher highlight PinYin</PackageTags>
+		<Authors>VShawn</Authors>
+		<Product>VariableKeywordMatcher</Product>
+		<Version>1.0.2</Version>
+		<PackageProjectUrl>https://github.com/VShawn/VariableKeywordMatcher</PackageProjectUrl>
 	</PropertyGroup>
 
 	<ItemGroup>

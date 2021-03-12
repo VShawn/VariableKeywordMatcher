@@ -8,7 +8,7 @@
 
   <PropertyGroup>
     <DocumentationFile>D:\Playground\SharpKeyword\VariableKeywordMatcher\VariableKeywordMatcher.xml</DocumentationFile>
-    <Description>VariableKeywordMatcher is library offering several string-keyword matchers, they allow you match keyword by Initials\Chinese PinYin\Japanese Romaji... You can get the keyword hit position that allow you to highlight the matched words.</Description>
+    <Description>VariableKeywordMatcher is a C# library offering several string-keyword matchers, they allow you match keyword by Initials\Chinese PinYin\Japanese Romaji... You can get the keyword hit position that allow you to highlight the matched words.</Description>
     <PackageProjectUrl>https://github.com/VShawn/VariableKeywordMatcher</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright></Copyright>
@@ -17,9 +17,12 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <NeutralLanguage></NeutralLanguage>
     <PackageIcon>icon-100.png</PackageIcon>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <FileVersion>1.0.0.1</FileVersion>
-    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <FileVersion>1.0.2.0</FileVersion>
+    <Version>1.0.2</Version>
+    <Authors>VShawn</Authors>
+    <Product>VariableKeywordMatcher</Product>
+    <Company>VShawn</Company>
   </PropertyGroup>
 
   <ItemGroup>
