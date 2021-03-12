@@ -1,6 +1,6 @@
 ![](./doc/icons/icon-64.png)
 
-# Variable-Keyword-Matcher
+# [Variable-Keyword-Matcher](https://github.com/VShawn/VariableKeywordMatcher)
 
 VariableKeywordMatcher is a C# lib for:
 - English initials matching
