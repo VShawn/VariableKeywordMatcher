@@ -11,19 +11,19 @@
     <Description>VariableKeywordMatcher is library offering several string-keyword matchers, they allow you match keyword by Initials\Chinese PinYin\Japanese Romaji... You can get the keyword hit position that allow you to highlight the matched words.</Description>
     <PackageProjectUrl>https://github.com/VShawn/VariableKeywordMatcher</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Copyright>GPL</Copyright>
+    <Copyright></Copyright>
     <PackageTags>Keyword matcher highlight PinYin</PackageTags>
     <RepositoryUrl>https://github.com/VShawn/VariableKeywordMatcher</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <NeutralLanguage></NeutralLanguage>
-    <PackageIcon>icon.png</PackageIcon>
+    <PackageIcon>icon-100.png</PackageIcon>
     <AssemblyVersion>1.0.0.1</AssemblyVersion>
     <FileVersion>1.0.0.1</FileVersion>
     <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\doc\icons\icon.png">
+    <None Include="..\doc\icons\icon-100.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

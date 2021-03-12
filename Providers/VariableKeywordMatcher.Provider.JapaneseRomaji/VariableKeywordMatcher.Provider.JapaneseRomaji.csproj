@@ -2,6 +2,13 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>netcoreapp3.1;net5.0</TargetFrameworks>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageIcon>icon-100.png</PackageIcon>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Description>VariableKeywordMatcher.Provider.JapaneseRomaji is the Japanese Romaji matcher for VariableKeywordMatcher. 
+e.g. "konni" will hit "こんにちは".</Description>
+		<RepositoryUrl>https://github.com/VShawn/VariableKeywordMatcher</RepositoryUrl>
+		<PackageTags>Keyword matcher highlight Japanese</PackageTags>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -21,6 +28,47 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\VariableKeywordMatcher\VariableKeywordMatcher.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\doc\icons\icon-100.png">
+	    <Pack>True</Pack>
+	    <PackagePath></PackagePath>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Remove="C:\Users\Shawn\.nuget\packages\libnmecab.ipadicbin\0.10.0\build\..\content\IpaDic\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Remove="C:\Users\Shawn\.nuget\packages\libnmecab.ipadicbin\0.10.0\build\..\content\IpaDic\unk.dic" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Remove="C:\Users\Shawn\.nuget\packages\libnmecab.ipadicbin\0.10.0\build\..\content\IpaDic\sys.dic" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Remove="C:\Users\Shawn\.nuget\packages\libnmecab.ipadicbin\0.10.0\build\..\content\IpaDic\matrix.bin" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Remove="C:\Users\Shawn\.nuget\packages\libnmecab.ipadicbin\0.10.0\build\..\content\IpaDic\COPYING" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Remove="C:\Users\Shawn\.nuget\packages\libnmecab.ipadicbin\0.10.0\build\..\content\IpaDic\char.bin" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Remove="C:\Users\Shawn\.nuget\packages\libnmecab.ipadicbin\0.10.0\build\..\content\IpaDic\AUTHORS" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="C:\Users\Shawn\.nuget\packages\libnmecab.ipadicbin\0.10.0\build\..\content\IpaDic\char.bin">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
 </Project>
