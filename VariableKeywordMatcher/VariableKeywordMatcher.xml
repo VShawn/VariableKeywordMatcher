@@ -31,10 +31,10 @@
         </member>
         <member name="M:VariableKeywordMatcher.Builder.Build(System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
             <summary>
-            Create a matcher including input match providers, CasesSensitive is false by default
+            Create a matcher including input match providers, CaseSensitive is false by default
             </summary>
             <param name="enabledProviderNames"></param>
-            <param name="isCasesSensitive"></param>
+            <param name="isCaseSensitive"></param>
             <returns></returns>
             <exception cref="T:System.Exception"></exception>
         </member>
@@ -116,7 +116,7 @@
             <param name="length"></param>
             <returns></returns>
         </member>
-        <member name="F:VariableKeywordMatcher.Matcher.IsCasesSensitive">
+        <member name="F:VariableKeywordMatcher.Matcher.IsCaseSensitive">
             <summary>
             
             </summary>
@@ -131,7 +131,7 @@
             
             </summary>
             <param name="providers"></param>
-            <param name="isCasesSensitive"></param>
+            <param name="isCaseSensitive"></param>
         </member>
         <member name="M:VariableKeywordMatcher.Matcher.CreateStringCache(System.String)">
             <summary>

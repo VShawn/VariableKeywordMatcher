@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VariableKeywordMatcher.Provider.JapaneseRomaji;
+using VariableKeywordMatcher;
+using VariableKeywordMatcher.Model;
 #if !NET45
+using VariableKeywordMatcher.Provider.JapaneseRomaji;
 
 namespace KeywordsShootingTests.Providers
 {

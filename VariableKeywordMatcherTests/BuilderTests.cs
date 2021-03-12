@@ -19,7 +19,7 @@ namespace VariableKeywordMatcherTests
         [TestMethod()]
         public void GetAvailableProviderTypesTest()
         {
-            var ts = Builder.GetAvailableProviderTypes();
+            var ts = Builder.GetAvailableProviderNames();
             Assert.IsTrue(ts.Any());
         }
 
@@ -71,13 +71,13 @@ namespace VariableKeywordMatcherTests
         {
             {
                 var matcher = Builder.Build(new[] { DiscreteMatchProvider.GetName() }, true);
-                Assert.IsTrue(matcher.IsCasesSensitive);
+                Assert.IsTrue(matcher.IsCaseSensitive);
                 Assert.IsTrue(matcher.ProviderTypes.Count == 1);
                 Assert.IsTrue(matcher.ProviderTypes[0] == DiscreteMatchProvider.GetName());
             }
             {
                 var matcher = Builder.Build(new[] { DiscreteMatchProvider.GetName(), ChineseZhCnPinYinMatchProvider.GetName() }, false);
-                Assert.IsTrue(matcher.IsCasesSensitive == false);
+                Assert.IsTrue(matcher.IsCaseSensitive == false);
                 Assert.IsTrue(matcher.ProviderTypes.Count == 2);
                 Assert.IsTrue(matcher.ProviderTypes.Any(x => x == DiscreteMatchProvider.GetName()));
                 Assert.IsTrue(matcher.ProviderTypes.Any(x => x == ChineseZhCnPinYinMatchProvider.GetName()));
@@ -85,7 +85,7 @@ namespace VariableKeywordMatcherTests
 #if !NET45
             {
                 var matcher = Builder.Build(new[] { JapaneseRomajiProvider.GetName(), ChineseZhCnPinYinInitialsMatchProvider.GetName() }, true);
-                Assert.IsTrue(matcher.IsCasesSensitive == true);
+                Assert.IsTrue(matcher.IsCaseSensitive == true);
                 Assert.IsTrue(matcher.ProviderTypes.Count == 2);
                 Assert.IsTrue(matcher.ProviderTypes.Any(x => x == JapaneseRomajiProvider.GetName()));
                 Assert.IsTrue(matcher.ProviderTypes.Any(x => x == ChineseZhCnPinYinInitialsMatchProvider.GetName()));

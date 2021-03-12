@@ -4,6 +4,9 @@ using VariableKeywordMatcher.Model;
 
 namespace VariableKeywordMatcher.Interface
 {
+    /// <summary>
+    /// base class of match provider
+    /// </summary>
     public abstract class MatchProviderBase
     {
         /// <summary>

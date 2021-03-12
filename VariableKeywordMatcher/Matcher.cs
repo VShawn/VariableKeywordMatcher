@@ -13,7 +13,7 @@ namespace VariableKeywordMatcher
         /// <summary>
         /// 
         /// </summary>
-        public readonly bool IsCasesSensitive;
+        public readonly bool IsCaseSensitive;
 
         /// <summary>
         /// name of available providers
@@ -24,10 +24,10 @@ namespace VariableKeywordMatcher
         /// 
         /// </summary>
         /// <param name="providers"></param>
-        /// <param name="isCasesSensitive"></param>
-        protected internal Matcher(IEnumerable<MatchProviderBase> providers, bool isCasesSensitive)
+        /// <param name="isCaseSensitive"></param>
+        protected internal Matcher(IEnumerable<MatchProviderBase> providers, bool isCaseSensitive)
         {
-            IsCasesSensitive = isCasesSensitive;
+            IsCaseSensitive = isCaseSensitive;
             _providers = new List<MatchProviderBase>(providers);
         }
 
@@ -55,7 +55,7 @@ namespace VariableKeywordMatcher
         public MatchResult Match(MatchCache matchCache, IEnumerable<string> keywords)
         {
             CheckProviders();
-            var result = MatchResult.CreateUnmatchedResult(matchCache.OriginalString, keywords, IsCasesSensitive);
+            var result = MatchResult.CreateUnmatchedResult(matchCache.OriginalString, keywords, IsCaseSensitive);
             foreach (var r in _providers.Select(provider => provider.DoMatches(matchCache, keywords)))
             {
                 result.Merge(r);

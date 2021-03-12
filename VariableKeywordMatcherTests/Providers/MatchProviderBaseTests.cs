@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VariableKeywordMatcher.Model;
+using VariableKeywordMatcher.Provider.ChineseZhCnPinYinInitials;
+using VariableKeywordMatcher.Provider.DirectMatch;
 
-namespace KeywordsShootingTests.Providers
+namespace VariableKeywordMatcherTests.Providers
 {
     [TestClass()]
     public class MatchProviderBaseTests

@@ -5,7 +5,7 @@ using System.Linq;
 namespace VariableKeywordMatcher.Model
 {
     /// <summary>
-    /// 
+    /// result of the match
     /// </summary>
     public class MatchResult
     {

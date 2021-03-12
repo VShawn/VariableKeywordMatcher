@@ -17,9 +17,9 @@ namespace VariableKeywordMatcher
     {
         private static readonly Dictionary<string, MatchProviderBase> AvailableProviders = new Dictionary<string, MatchProviderBase>();
 
-        private static MatchProviderBase CreateProviderInstance(Type providerType, bool isCasesSensitive)
+        private static MatchProviderBase CreateProviderInstance(Type providerType, bool isCaseSensitive)
         {
-            return (MatchProviderBase)Activator.CreateInstance(providerType, new object[] { isCasesSensitive });
+            return (MatchProviderBase)Activator.CreateInstance(providerType, new object[] { isCaseSensitive });
         }
 
         private static void LoadProviders()
@@ -53,7 +53,7 @@ namespace VariableKeywordMatcher
         /// Return a list of available match providers
         /// </summary>
         /// <returns></returns>
-        public static IEnumerable<string> GetAvailableProviderTypes()
+        public static IEnumerable<string> GetAvailableProviderNames()
         {
             LoadProviders();
             return AvailableProviders.Select(x => x.Key);
@@ -88,13 +88,13 @@ namespace VariableKeywordMatcher
         }
 
         /// <summary>
-        /// Create a matcher including input match providers, CasesSensitive is false by default
+        /// Create a matcher including input match providers, CaseSensitive is false by default
         /// </summary>
         /// <param name="enabledProviderNames"></param>
-        /// <param name="isCasesSensitive"></param>
+        /// <param name="isCaseSensitive"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public static Matcher Build(IEnumerable<string> enabledProviderNames, bool isCasesSensitive = false)
+        public static Matcher Build(IEnumerable<string> enabledProviderNames, bool isCaseSensitive = false)
         {
             LoadProviders();
 
@@ -103,10 +103,10 @@ namespace VariableKeywordMatcher
             {
                 if (AvailableProviders.ContainsKey(providerType) == false)
                     throw new Exception($"{providerType} provider not found");
-                providers.Add(CreateProviderInstance(AvailableProviders[providerType].GetType(), isCasesSensitive));
+                providers.Add(CreateProviderInstance(AvailableProviders[providerType].GetType(), isCaseSensitive));
             }
 
-            var matcher = new Matcher(providers, isCasesSensitive);
+            var matcher = new Matcher(providers, isCaseSensitive);
             return matcher;
         }
     }
