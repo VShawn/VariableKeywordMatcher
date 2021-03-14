@@ -527,6 +527,25 @@ namespace KeywordsShootingTests.Providers
                 var ret = matcher.DoMatches(org, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == false);
             }
+
+            matcher.AppendDescriptions(ref org);
+            {
+                var kws = new[] { "kon", "," , "ABC" };
+                var ret = matcher.DoMatches(org, kws);
+                Assert.IsTrue(ret.IsMatchAllKeywords == false);
+                var m = ret.HitFlags;
+                Assert.IsTrue(m.Count == org.StringLength
+                              && m[0] == true
+                              && m[1] == true
+                              && m[2] == true
+                              && m[3] == true
+                              && m[4] == true
+                              && m[5] == true
+                              && m[6] == false
+                              && m[7] == false
+                              && m[8] == false
+                              && m[9] == false);
+            }
         }
     }
 }

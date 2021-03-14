@@ -324,6 +324,25 @@ namespace VariableKeywordMatcherTests.Providers
                               && m[6] == false
                               && m[7] == false);
             }
+
+
+
+            {
+                string org = "a Bc dE ";
+                var kws = new[] { "aB", "Bd", "K" };
+                var ret = matcher.DoMatches(new MatchCache(org), kws);
+                Assert.IsTrue(ret.IsMatchAllKeywords == false);
+                var m = ret.HitFlags;
+                Assert.IsTrue(m.Count == org.Length
+                              && m[0] == true
+                              && m[1] == false
+                              && m[2] == true
+                              && m[3] == false
+                              && m[4] == false
+                              && m[5] == true
+                              && m[6] == false
+                              && m[7] == false);
+            }
         }
     }
 }

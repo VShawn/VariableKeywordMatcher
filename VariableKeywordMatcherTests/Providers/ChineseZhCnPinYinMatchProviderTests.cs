@@ -506,6 +506,17 @@ namespace VariableKeywordMatcherTests.Providers
                               && m[9] == true
                               && m[10] == true);
             }
+
+
+            {
+                var ret = matcher.DoMatches(new MatchCache("大夫A"), new[] { "Daf", "B" });
+                Assert.IsTrue(ret.IsMatchAllKeywords == false);
+                var m = ret.HitFlags;
+                Assert.IsTrue(m.Count == 3
+                              && m[0] == true
+                              && m[1] == true
+                              && m[2] == false);
+            }
         }
     }
 }

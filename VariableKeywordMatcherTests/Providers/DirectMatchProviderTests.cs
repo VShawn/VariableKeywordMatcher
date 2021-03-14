@@ -180,6 +180,23 @@ namespace VariableKeywordMatcherTests.Providers
                               && m[4] == false
                               && m[5] == false);
             }
+
+
+
+            {
+                string org = "abAA a";
+                var kws = new[] { "ab", "AB" };
+                var ret = matcherCase.DoMatches(new MatchCache(org), kws);
+                Assert.IsTrue(ret.IsMatchAllKeywords == false);
+                var m = ret.HitFlags;
+                Assert.IsTrue(m.Count == org.Length
+                              && m[0] == true
+                              && m[1] == true
+                              && m[2] == false
+                              && m[3] == false
+                              && m[4] == false
+                              && m[5] == false);
+            }
         }
     }
 }

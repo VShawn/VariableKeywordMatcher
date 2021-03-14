@@ -70,7 +70,7 @@ namespace VariableKeywordMatcher
                 LoadProviders();
             if (AvailableProviders.ContainsKey(name))
                 return AvailableProviders[name].GetProviderDescription();
-            return $"{name} provider not found";
+            return $"provider: `{name}` not found";
         }
 
         /// <summary>

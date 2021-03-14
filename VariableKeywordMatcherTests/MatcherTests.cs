@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VariableKeywordMatcher;
+using VariableKeywordMatcher.Model;
 using VariableKeywordMatcher.Provider.ChineseZhCnPinYin;
 using VariableKeywordMatcher.Provider.ChineseZhCnPinYinInitials;
 using VariableKeywordMatcher.Provider.DirectMatch;
@@ -273,6 +275,104 @@ namespace VariableKeywordMatcherTests
                 Assert.IsTrue(matcher.Match(cache, new[] { "a", " " }).IsMatchAllKeywords == false);
                 Assert.IsTrue(matcher.Match(cache, new[] { "a" }).IsMatchAllKeywords == false);
                 Assert.IsTrue(matcher.Match(cache, new[] { " " }).IsMatchAllKeywords == true);
+            }
+        }
+
+
+        [TestMethod()]
+        public void MatchsTest()
+        {
+            List<MatchCache> caches = new List<MatchCache>();
+            caches.Add(new MatchCache("HelloWorld 你好世界！"));
+            caches.Add(new MatchCache("NH 1234"));
+
+            var matcher = Builder.Build(new[] { DirectMatchProvider.GetName(), ChineseZhCnPinYinMatchProvider.GetName() }, false);
+
+            {
+                var r = matcher.Matchs(caches, new string[] { "hell", "123" });
+                Assert.IsTrue(r.IsMatchAllKeywords);
+                Assert.IsTrue(r.HitFlags[0][0] == true
+                              && r.HitFlags[0][1] == true
+                              && r.HitFlags[0][2] == true
+                              && r.HitFlags[0][3] == true
+                              && r.HitFlags[0][4] == false
+                              && r.HitFlags[0][5] == false
+                              && r.HitFlags[1][0] == false
+                              && r.HitFlags[1][1] == false
+                              && r.HitFlags[1][2] == false
+                              && r.HitFlags[1][3] == true
+                              && r.HitFlags[1][4] == true
+                              && r.HitFlags[1][5] == true
+                              && r.HitFlags[1][6] == false
+                );
+            }
+
+            {
+                var r = matcher.Matchs(caches, new string[] { "hell", "123", "xx" });
+                Assert.IsTrue(r.IsMatchAllKeywords == false);
+                Assert.IsTrue(r.HitFlags[0][0] == true
+                              && r.HitFlags[0][1] == true
+                              && r.HitFlags[0][2] == true
+                              && r.HitFlags[0][3] == true
+                              && r.HitFlags[0][4] == false
+                              && r.HitFlags[0][5] == false
+                              && r.HitFlags[1][0] == false
+                              && r.HitFlags[1][1] == false
+                              && r.HitFlags[1][2] == false
+                              && r.HitFlags[1][3] == true
+                              && r.HitFlags[1][4] == true
+                              && r.HitFlags[1][5] == true
+                              && r.HitFlags[1][6] == false
+                );
+            }
+        }
+
+
+        [TestMethod()]
+        public void MatchsTestCase()
+        {
+            List<MatchCache> caches = new List<MatchCache>();
+            caches.Add(new MatchCache("HelloWorld 你好世界！"));
+            caches.Add(new MatchCache("NH 1234"));
+
+            var matcher = Builder.Build(new[] { DirectMatchProvider.GetName(), ChineseZhCnPinYinMatchProvider.GetName() }, true);
+
+            {
+                var r = matcher.Matchs(caches, new string[] { "Hell", "123" });
+                Assert.IsTrue(r.IsMatchAllKeywords);
+                Assert.IsTrue(r.HitFlags[0][0] == true
+                              && r.HitFlags[0][1] == true
+                              && r.HitFlags[0][2] == true
+                              && r.HitFlags[0][3] == true
+                              && r.HitFlags[0][4] == false
+                              && r.HitFlags[0][5] == false
+                              && r.HitFlags[1][0] == false
+                              && r.HitFlags[1][1] == false
+                              && r.HitFlags[1][2] == false
+                              && r.HitFlags[1][3] == true
+                              && r.HitFlags[1][4] == true
+                              && r.HitFlags[1][5] == true
+                              && r.HitFlags[1][6] == false
+                );
+            }
+
+            {
+                var r = matcher.Matchs(caches, new string[] { "hell", "123"});
+                Assert.IsTrue(r.IsMatchAllKeywords == false);
+                Assert.IsTrue(r.HitFlags[0][0] == false
+                              && r.HitFlags[0][1] == false
+                              && r.HitFlags[0][2] == false
+                              && r.HitFlags[0][3] == false
+                              && r.HitFlags[0][4] == false
+                              && r.HitFlags[0][5] == false
+                              && r.HitFlags[1][0] == false
+                              && r.HitFlags[1][1] == false
+                              && r.HitFlags[1][2] == false
+                              && r.HitFlags[1][3] == true
+                              && r.HitFlags[1][4] == true
+                              && r.HitFlags[1][5] == true
+                              && r.HitFlags[1][6] == false
+                );
             }
         }
     }

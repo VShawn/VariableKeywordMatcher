@@ -35,10 +35,10 @@ namespace VariableKeywordMatcher
         /// create a matching spell cache for the string
         /// </summary>
         /// <returns></returns>
-        public MatchCache CreateStringCache(string str)
+        public MatchCache CreateStringCache(string originalString)
         {
             CheckProviders();
-            var sd = new MatchCache(str);
+            var sd = new MatchCache(originalString);
             foreach (var provider in _providers)
             {
                 provider.AppendDescriptions(ref sd);
@@ -47,9 +47,9 @@ namespace VariableKeywordMatcher
         }
 
         /// <summary>
-        /// using keywords to match the cache of the original sting
+        /// using keywords to match the cache of the original string
         /// </summary>
-        /// <param name="matchCache">cache of the original sting</param>
+        /// <param name="matchCache">cache of the original string</param>
         /// <param name="keywords">list of keywords</param>
         /// <returns></returns>
         public MatchResult Match(MatchCache matchCache, IEnumerable<string> keywords)
@@ -64,9 +64,9 @@ namespace VariableKeywordMatcher
         }
 
         /// <summary>
-        /// using keywords to match the cache of the original sting
+        /// using keywords to match the cache of the original string
         /// </summary>
-        /// <param name="matchCache">cache of the original sting</param>
+        /// <param name="matchCache">cache of the original string</param>
         /// <param name="keyword">single keyword</param>
         /// <returns></returns>
         public MatchResult Match(MatchCache matchCache, string keyword)
@@ -77,25 +77,46 @@ namespace VariableKeywordMatcher
         /// <summary>
         /// using keywords to match the string
         /// </summary>
-        /// <param name="str">sting</param>
+        /// <param name="originalString">original string</param>
         /// <param name="keywords">list of keywords</param>
         /// <returns></returns>
-        public MatchResult Match(string str, IEnumerable<string> keywords)
+        public MatchResult Match(string originalString, IEnumerable<string> keywords)
         {
-            var mc = CreateStringCache(str);
+            var mc = CreateStringCache(originalString);
             return Match(mc, keywords);
         }
 
         /// <summary>
         /// using keyword to match the string
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="originalString">original string</param>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public MatchResult Match(string str, string keyword)
+        public MatchResult Match(string originalString, string keyword)
         {
-            var mc = CreateStringCache(str);
+            var mc = CreateStringCache(originalString);
             return Match(mc, new[] { keyword });
+        }
+
+        /// <summary>
+        /// using keyword to match the string
+        /// </summary>
+        /// <param name="matchCaches">caches of the original strings</param>
+        /// <param name="keywords"></param>
+        /// <returns></returns>
+        public MatchResults Matchs(List<MatchCache> matchCaches, IEnumerable<string> keywords)
+        {
+            var mrs = new List<MatchResult>(matchCaches.Count);
+            foreach (var matchCache in matchCaches)
+            {
+                var mr = Match(matchCache, keywords);
+                mrs.Add(mr);
+            }
+
+            var ret = new MatchResults(matchCaches.Select(x => x.OriginalString).ToList(), keywords,
+                this.IsCaseSensitive, mrs);
+
+            return ret;
         }
 
         private void CheckProviders()
