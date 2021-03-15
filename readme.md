@@ -16,6 +16,14 @@ VariableKeywordMatcher is a C# lib for:
 
 ### Install
 
+Install from nuget:
+
+[VariableKeywordMatcher](https://www.nuget.org/packages/VariableKeywordMatcher/)
+[(optional)MatcherProvider: ChineseZhCnPinYin](https://www.nuget.org/packages/VariableKeywordMatcher.Provider.ChineseZhCnPinYin/)
+[(optional)MatcherProvider: ChineseZhCnPinYinInitials](https://www.nuget.org/packages/VariableKeywordMatcher.Provider.ChineseZhCnPinYinInitials/)
+[(optional)MatcherProvider: JapaneseRomaji](https://www.nuget.org/packages/VariableKeywordMatcher.Provider.JapaneseRomaji/)
+
+
 ### QuickStart
 
 1. Get the names of available matchers

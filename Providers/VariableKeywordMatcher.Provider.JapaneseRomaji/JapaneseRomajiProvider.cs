@@ -41,7 +41,7 @@ namespace VariableKeywordMatcher.Provider.JapaneseRomaji
         /// <returns></returns>
         public override string GetProviderDescriptionEn()
         {
-            return "Japanese romaji(Hepburn) matcher";
+            return "Japanese romaji(Hepburn) matcher; e.g. keyword \"konichi\" will matched the string \"こんにちは\"";
         }
 
         /// <summary>

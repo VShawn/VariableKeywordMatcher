@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net5.0;net45;netcoreapp3.1;</TargetFrameworks>
-
+		<TargetFrameworks>net5.0-windows;netcoreapp3.1;netstandard2.0;net48;net45;</TargetFrameworks>
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
+
 
 	<PropertyGroup Condition="'$(TargetFramework)'=='net45'">
 		<DefineConstants>NET45</DefineConstants>
@@ -23,7 +23,6 @@
 		<ProjectReference Include="..\Providers\VariableKeywordMatcher.Provider.ChineseZhCnPinYinInitials\VariableKeywordMatcher.Provider.ChineseZhCnPinYinInitials.csproj" />
 		<ProjectReference Include="..\Providers\VariableKeywordMatcher.Provider.ChineseZhCnPinYin\VariableKeywordMatcher.Provider.ChineseZhCnPinYin.csproj" />
 	</ItemGroup>
-
 	<ItemGroup Condition="'$(TargetFramework)'!='net45'">
 		<ProjectReference Include="..\Providers\VariableKeywordMatcher.Provider.JapaneseRomaji\VariableKeywordMatcher.Provider.JapaneseRomaji.csproj" />
 	</ItemGroup>

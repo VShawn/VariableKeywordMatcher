@@ -6,6 +6,9 @@ using VariableKeywordMatcher.Model;
 
 namespace VariableKeywordMatcher
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Matcher
     {
         private readonly List<MatchProviderBase> _providers;

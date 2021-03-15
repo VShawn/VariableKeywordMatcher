@@ -40,7 +40,7 @@ namespace VariableKeywordMatcher.Provider.ChineseZhCnPinYin
         /// <returns></returns>
         public override string GetProviderDescriptionEn()
         {
-            return "Chinese(zh-cn) PinYin matcher";
+            return "Chinese(zh-cn) PinYin matcher; e.g. keyword \"nihaoshij\" will matched the string \"你好世界\"";
         }
 
         /// <summary>

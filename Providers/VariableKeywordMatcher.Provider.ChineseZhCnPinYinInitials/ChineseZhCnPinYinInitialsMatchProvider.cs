@@ -50,7 +50,7 @@ namespace VariableKeywordMatcher.Provider.ChineseZhCnPinYinInitials
         /// <returns></returns>
         public override string GetProviderDescriptionEn()
         {
-            return "Chinese(zh-cn) PinYin initials matcher";
+            return "Chinese(zh-cn) PinYin initials matcher; e.g. keyword \"NHSJ\" will matched the string \"你好世界\"";
         }
 
         /// <summary>

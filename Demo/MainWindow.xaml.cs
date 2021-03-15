@@ -116,9 +116,11 @@ namespace Demo
             InitializeComponent();
             this.DataContext = this;
 
+            Test();
+
             // get all available match providers, and show them on list view by binding AvailableMatcherProviders
-            var providerTypes = VariableKeywordMatcher.Builder.GetAvailableProviderNames();
-            foreach (var enumProviderType in providerTypes)
+            var availableProviderNames = VariableKeywordMatcher.Builder.GetAvailableProviderNames();
+            foreach (var enumProviderType in availableProviderNames)
             {
                 AvailableMatcherProviders.Add(new MatchProviderInfo()
                 {
@@ -128,7 +130,7 @@ namespace Demo
                     Enabled = true,
                 });
             }
-            _matcher = VariableKeywordMatcher.Builder.Build(providerTypes);
+            _matcher = VariableKeywordMatcher.Builder.Build(availableProviderNames);
 
 
             // init all original strings
