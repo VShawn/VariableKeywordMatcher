@@ -9,6 +9,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using Demo.Annotations;
+using VariableKeywordMatcher.Model;
+using VariableKeywordMatcher.Provider.ChineseZhCnPinYin;
 
 namespace Demo
 {
@@ -141,6 +143,7 @@ namespace Demo
                 "こんにちは, 世界",
                 "大夫 = doctor",
                 "士大夫 = literati",
+                "华为云edge",
             };
 
             // init match cache for original strings

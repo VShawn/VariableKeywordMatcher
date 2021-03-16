@@ -9,6 +9,22 @@ namespace VariableKeywordMatcherTests.Providers
     public class ChineseZhCnPinYinMatchProviderTests
     {
         [TestMethod()]
+        public void Test1()
+        {
+            var matcher = new ChineseZhCnPinYinMatchProvider(false);
+
+
+            {
+                string org = "华为云edge";
+                var kws = new[] { "eg" };
+                var ret = matcher.DoMatches(new MatchCache(org), kws);
+                Assert.IsTrue(ret.IsMatchAllKeywords == false);
+            }
+
+        }
+
+
+        [TestMethod()]
         public void FindMatchesTest()
         {
             var matcher = new ChineseZhCnPinYinMatchProvider(false);

@@ -9,7 +9,7 @@ e.g. "nihao" will hit "你好".</Description>
 		<PackageIcon>icon-100.png</PackageIcon>
 		<RepositoryUrl>https://github.com/VShawn/VariableKeywordMatcher</RepositoryUrl>
 		<PackageTags>Keyword matcher highlight PinYin</PackageTags>
-		<Version>1.0.4</Version>
+		<Version>1.0.5</Version>
 		<Authors>VShawn</Authors>
 		<Company>VShawn</Company>
 		<Product>VariableKeywordMatcher</Product>

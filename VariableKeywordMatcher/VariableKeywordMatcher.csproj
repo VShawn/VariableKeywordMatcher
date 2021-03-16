@@ -17,7 +17,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <NeutralLanguage></NeutralLanguage>
     <PackageIcon>icon-100.png</PackageIcon>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
     <Authors>VShawn</Authors>
     <Product>VariableKeywordMatcher</Product>
     <Company>VShawn</Company>

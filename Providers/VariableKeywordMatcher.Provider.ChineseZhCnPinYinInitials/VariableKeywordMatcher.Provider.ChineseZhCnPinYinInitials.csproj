@@ -11,7 +11,7 @@ e.g. "NH" will hit "你好".</Description>
 		<PackageTags>Keyword matcher highlight PinYin</PackageTags>
 		<Authors>VShawn</Authors>
 		<Product>VariableKeywordMatcher</Product>
-		<Version>1.0.4</Version>
+		<Version>1.0.5</Version>
 		<PackageProjectUrl>https://github.com/VShawn/VariableKeywordMatcher</PackageProjectUrl>
 	</PropertyGroup>
 

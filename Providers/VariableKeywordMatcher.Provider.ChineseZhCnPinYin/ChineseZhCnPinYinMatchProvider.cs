@@ -145,7 +145,7 @@ namespace VariableKeywordMatcher.Provider.ChineseZhCnPinYin
             for (int i = 0; i < spellsCache.Units.Count; i++)
             {
                 var tmpHitFlags = CreateBoolFlags(hitFlags.Count);
-                var flag = MatchNextSpells(spellsCache, i, keywordInTrueCase, 0, tmpHitFlags);
+                var flag = MatchSpellUnits(spellsCache, i, keywordInTrueCase, 0, tmpHitFlags);
                 if (flag == true)
                 {
                     // matched then update hitFlags.
@@ -160,30 +160,31 @@ namespace VariableKeywordMatcher.Provider.ChineseZhCnPinYin
             return isKeywordMatched;
         }
 
-        private bool MatchNextSpells(SpellCache spellsCache, int nextIndex, string keyword, int keywordIndex, List<bool> hitFlags)
+        private bool MatchSpellUnits(SpellCache spellsCache, int index, string keyword, int keywordIndex, List<bool> hitFlags)
         {
-            for (int i = 0; i < spellsCache.Units[nextIndex].Count; i++)
+            for (int i = 0; i < spellsCache.Units[index].Count; i++)
             {
-                if (MatchOneSpell(spellsCache.Units[nextIndex][i], spellsCache.ConvertFlag[nextIndex], keyword, keywordIndex))
+                if (MatchOneSpell(spellsCache.Units[index][i], spellsCache.ConvertFlag[index], keyword, keywordIndex))
                 {
-                    if (keywordIndex + spellsCache.Units[nextIndex][i].Length >= keyword.Length)
+                    if (keywordIndex + spellsCache.Units[index][i].Length >= keyword.Length)
                     {
-                        hitFlags[nextIndex] = true;
+                        hitFlags[index] = true;
                         return true;
                     }
 
-                    if (MatchNextSpells(spellsCache, nextIndex + 1, keyword, keywordIndex + spellsCache.Units[nextIndex][i].Length, hitFlags))
+                    if (index + 1 < spellsCache.Units.Count
+                        && MatchSpellUnits(spellsCache, index + 1, keyword, keywordIndex + spellsCache.Units[index][i].Length, hitFlags))
                     {
-                        hitFlags[nextIndex] = true;
+                        hitFlags[index] = true;
                         return true;
                     }
                     else
                     {
-                        hitFlags[nextIndex] = false;
+                        hitFlags[index] = false;
                     }
                 }
             }
-            hitFlags[nextIndex] = false;
+            hitFlags[index] = false;
             return false;
         }
 
@@ -211,9 +212,6 @@ namespace VariableKeywordMatcher.Provider.ChineseZhCnPinYin
                 }
             }
 
-            // if it is not pinyin
-            else if (spell != keyword[keywordIndex].ToString())
-                return false;
             return true;
         }
     }

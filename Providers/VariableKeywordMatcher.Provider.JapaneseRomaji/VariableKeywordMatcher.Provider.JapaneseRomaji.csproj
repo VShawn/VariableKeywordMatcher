@@ -8,7 +8,7 @@
 		<Description>VariableKeywordMatcher.Provider.JapaneseRomaji is the Japanese Romaji matcher for VariableKeywordMatcher. e.g. "konni" will hit "こんにちは".</Description>
 		<RepositoryUrl>https://github.com/VShawn/VariableKeywordMatcher</RepositoryUrl>
 		<PackageTags>Keyword matcher highlight Japanese</PackageTags>
-		<Version>1.0.4</Version>
+		<Version>1.0.5</Version>
 		<PackageProjectUrl>https://github.com/VShawn/VariableKeywordMatcher</PackageProjectUrl>
 		<Authors>VShawn</Authors>
 		<Product>VariableKeywordMatcher</Product>
@@ -24,7 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Kawazu" Version="1.0.0" />
+		<PackageReference Include="Kawazu" Version="1.0.1" />
 		<PackageReference Include="LibNMeCab" Version="0.10.1" />
 		<PackageReference Include="LibNMeCab.IpaDicBin" Version="0.10.0" />
 	</ItemGroup>
