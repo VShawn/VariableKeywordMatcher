@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <TargetFrameworks>net6.0;net5.0-windows;netcoreapp3.1;netstandard2.0;net48;net45;</TargetFrameworks>
-    <AssemblyName>VariableKeywordMatcher</AssemblyName>
+    <AssemblyName>VariableKeywordMatcherIn1</AssemblyName>
     <RootNamespace>VariableKeywordMatcher</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup>
-    <DocumentationFile>D:\Playground\SharpKeyword\VariableKeywordMatcher\VariableKeywordMatcher.xml</DocumentationFile>
-    <Description>VariableKeywordMatcher is a C# library offering several string-keyword matchers, they allow you match keyword by Initials\Chinese PinYin(plugin needed)\Japanese Romaji(plugin needed)... You can get the keyword hit position that allow you to highlight the matched words.</Description>
+	  <DocumentationFile>D:\Playground\SharpKeyword\VariableKeywordMatcherIn1\VariableKeywordMatcherIn1.xml</DocumentationFile>
+	  <Description>VariableKeywordMatcherIn1 is a C# library offering several string-keyword matchers(English + PinYin), they allow you match keyword by Initials\Chinese PinYin\Japanese Romaji(plug-in needed)... You can get the keyword hit position that allow you to highlight the matched words.</Description>
     <PackageProjectUrl>https://github.com/VShawn/VariableKeywordMatcher</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright></Copyright>
@@ -17,9 +17,9 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <NeutralLanguage></NeutralLanguage>
     <PackageIcon>icon-100.png</PackageIcon>
-    <Version>1.0.6</Version>
+    <Version>1.0.0</Version>
     <Authors>VShawn</Authors>
-    <Product>VariableKeywordMatcher</Product>
+    <Product>VariableKeywordMatcherIn1</Product>
     <Company>VShawn</Company>
   </PropertyGroup>
 
@@ -28,6 +28,11 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ToolGood.Words.FirstPinyin" Version="3.0.1.4" />
+    <PackageReference Include="ToolGood.Words.Pinyin" Version="3.0.2.6" />
   </ItemGroup>
 
 </Project>

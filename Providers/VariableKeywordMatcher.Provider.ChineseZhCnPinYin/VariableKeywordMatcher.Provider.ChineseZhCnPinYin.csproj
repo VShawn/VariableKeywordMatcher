@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net5.0-windows;netcoreapp3.1;netstandard2.0;net48;net45;</TargetFrameworks>
+		<TargetFrameworks>net6.0;net5.0-windows;netcoreapp3.1;netstandard2.0;net48;net45;</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Description>VariableKeywordMatcher.Provider.JapaneseRomaji is the Chinese PinYin matcher for VariableKeywordMatcher.
+		<Description>VariableKeywordMatcher.Provider.JapaneseRomaji is the Chinese PinYin matcher(plugin) for VariableKeywordMatcher.
 e.g. "nihao" will hit "你好".</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIcon>icon-100.png</PackageIcon>
 		<RepositoryUrl>https://github.com/VShawn/VariableKeywordMatcher</RepositoryUrl>
 		<PackageTags>Keyword matcher highlight PinYin</PackageTags>
-		<Version>1.0.5</Version>
+		<Version>1.0.6</Version>
 		<Authors>VShawn</Authors>
 		<Company>VShawn</Company>
 		<Product>VariableKeywordMatcher</Product>
