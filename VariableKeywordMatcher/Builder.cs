@@ -62,7 +62,7 @@ namespace VariableKeywordMatcher
         public static IEnumerable<string> GetAvailableProviderNames()
         {
             LoadProviders();
-            return AvailableProviders.Select(x => x.Key);
+            return AvailableProviders.Select(x => x.Key).ToList();
         }
 
         /// <summary>

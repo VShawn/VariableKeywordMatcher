@@ -28,7 +28,7 @@ namespace VariableKeywordMatcher
         /// </summary>
         /// <param name="providers"></param>
         /// <param name="isCaseSensitive"></param>
-        protected internal Matcher(IEnumerable<MatchProviderBase> providers, bool isCaseSensitive)
+        public Matcher(IEnumerable<MatchProviderBase> providers, bool isCaseSensitive)
         {
             IsCaseSensitive = isCaseSensitive;
             _providers = new List<MatchProviderBase>(providers);

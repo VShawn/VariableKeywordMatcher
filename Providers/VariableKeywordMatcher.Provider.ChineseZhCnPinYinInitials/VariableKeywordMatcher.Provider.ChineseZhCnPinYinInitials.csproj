@@ -11,7 +11,7 @@ e.g. "NH" will hit "你好".</Description>
 		<PackageTags>Keyword matcher highlight PinYin</PackageTags>
 		<Authors>VShawn</Authors>
 		<Product>VariableKeywordMatcher</Product>
-		<Version>1.0.6</Version>
+		<Version>1.0.7</Version>
 		<PackageProjectUrl>https://github.com/VShawn/VariableKeywordMatcher</PackageProjectUrl>
 	</PropertyGroup>
 
@@ -20,14 +20,14 @@ e.g. "NH" will hit "你好".</Description>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\VariableKeywordMatcher\VariableKeywordMatcher.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <None Include="..\..\doc\icons\icon-100.png">
 	    <Pack>True</Pack>
 	    <PackagePath></PackagePath>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\VariableKeywordMatcher.I\VariableKeywordMatcher.I.csproj" />
 	</ItemGroup>
 
 </Project>

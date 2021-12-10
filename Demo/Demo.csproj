@@ -2,18 +2,17 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFrameworks>net5.0-windows;netcoreapp3.1;net48;net45;</TargetFrameworks>
+    <TargetFrameworks>net5.0-windows;netcoreapp3.1;net48;</TargetFrameworks>
     <UseWPF>true</UseWPF>
+    <BaseOutputPath>T:\debug</BaseOutputPath>
   </PropertyGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\VariableKeywordMatcher\VariableKeywordMatcher.csproj" />
-		<ProjectReference Include="..\Providers\VariableKeywordMatcher.Provider.ChineseZhCnPinYinInitials\VariableKeywordMatcher.Provider.ChineseZhCnPinYinInitials.csproj" />
-		<ProjectReference Include="..\Providers\VariableKeywordMatcher.Provider.ChineseZhCnPinYin\VariableKeywordMatcher.Provider.ChineseZhCnPinYin.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)'!='net45'">
-		<ProjectReference Include="..\Providers\VariableKeywordMatcher.Provider.JapaneseRomaji\VariableKeywordMatcher.Provider.JapaneseRomaji.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Providers\VariableKeywordMatcher.Provider.ChineseZhCnPinYinInitials\VariableKeywordMatcher.Provider.ChineseZhCnPinYinInitials.csproj" />
+    <ProjectReference Include="..\Providers\VariableKeywordMatcher.Provider.ChineseZhCnPinYin\VariableKeywordMatcher.Provider.ChineseZhCnPinYin.csproj" />
+    <ProjectReference Include="..\Providers\VariableKeywordMatcher.Provider.JapaneseRomaji\VariableKeywordMatcher.Provider.JapaneseRomaji.csproj" />
+    <ProjectReference Include="..\VariableKeywordMatcher.I\VariableKeywordMatcher.I.csproj" />
+    <ProjectReference Include="..\VariableKeywordMatcher\VariableKeywordMatcher.csproj" />
+  </ItemGroup>
 
 </Project>

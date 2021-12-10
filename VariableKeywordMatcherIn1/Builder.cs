@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using VariableKeywordMatcher;
 using VariableKeywordMatcher.Interface;
+using VariableKeywordMatcher.Provider.ChineseZhCnPinYin;
+using VariableKeywordMatcher.Provider.ChineseZhCnPinYinInitials;
 using VariableKeywordMatcher.Provider.DirectMatch;
 using VariableKeywordMatcher.Provider.DiscreteMatch;
 using VariableKeywordMatcher.Provider.InitialsMatch;
 
-namespace VariableKeywordMatcher
+namespace VariableKeywordMatcherIn1
 {
     /// <summary>
     /// Matcher builder
@@ -30,6 +33,10 @@ namespace VariableKeywordMatcher
                 AvailableProviders.Add(InitialsMatchProvider.GetName(), new InitialsMatchProvider(false));
             if (AvailableProviders.ContainsKey(DiscreteMatchProvider.GetName()) == false)
                 AvailableProviders.Add(DiscreteMatchProvider.GetName(), new DiscreteMatchProvider(false));
+            if (AvailableProviders.ContainsKey(ChineseZhCnPinYinInitialsMatchProvider.GetName()) == false)
+                AvailableProviders.Add(ChineseZhCnPinYinInitialsMatchProvider.GetName(), new ChineseZhCnPinYinInitialsMatchProvider(false));
+            if (AvailableProviders.ContainsKey(ChineseZhCnPinYinMatchProvider.GetName()) == false)
+                AvailableProviders.Add(ChineseZhCnPinYinMatchProvider.GetName(), new ChineseZhCnPinYinMatchProvider(false));
 
             try
             {
@@ -62,7 +69,7 @@ namespace VariableKeywordMatcher
         public static IEnumerable<string> GetAvailableProviderNames()
         {
             LoadProviders();
-            return AvailableProviders.Select(x => x.Key);
+            return AvailableProviders.Select(x => x.Key).ToList();
         }
 
         /// <summary>
