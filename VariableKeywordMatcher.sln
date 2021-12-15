@@ -26,6 +26,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VariableKeywordMatcherIn1",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VariableKeywordMatcher.I", "VariableKeywordMatcher.I\VariableKeywordMatcher.I.csproj", "{40CC4FF6-EE7B-4E35-A5AF-408292E23360}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NugetTest", "NugetTest\NugetTest.csproj", "{0D0C9DA7-384D-44FC-83EF-1D3974A821CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +66,10 @@ Global
 		{40CC4FF6-EE7B-4E35-A5AF-408292E23360}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40CC4FF6-EE7B-4E35-A5AF-408292E23360}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40CC4FF6-EE7B-4E35-A5AF-408292E23360}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D0C9DA7-384D-44FC-83EF-1D3974A821CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D0C9DA7-384D-44FC-83EF-1D3974A821CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D0C9DA7-384D-44FC-83EF-1D3974A821CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D0C9DA7-384D-44FC-83EF-1D3974A821CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

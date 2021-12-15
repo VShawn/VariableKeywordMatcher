@@ -8,11 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Providers\VariableKeywordMatcher.Provider.ChineseZhCnPinYinInitials\VariableKeywordMatcher.Provider.ChineseZhCnPinYinInitials.csproj" />
-    <ProjectReference Include="..\Providers\VariableKeywordMatcher.Provider.ChineseZhCnPinYin\VariableKeywordMatcher.Provider.ChineseZhCnPinYin.csproj" />
-    <ProjectReference Include="..\Providers\VariableKeywordMatcher.Provider.JapaneseRomaji\VariableKeywordMatcher.Provider.JapaneseRomaji.csproj" />
-    <ProjectReference Include="..\VariableKeywordMatcher.I\VariableKeywordMatcher.I.csproj" />
-    <ProjectReference Include="..\VariableKeywordMatcher\VariableKeywordMatcher.csproj" />
+    <ProjectReference Include="..\VariableKeywordMatcherIn1\VariableKeywordMatcherIn1.csproj" />
   </ItemGroup>
 
 </Project>

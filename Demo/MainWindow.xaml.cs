@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using Demo.Annotations;
+using VariableKeywordMatcher;
 using VariableKeywordMatcher.Model;
 using VariableKeywordMatcher.Provider.ChineseZhCnPinYin;
 
@@ -64,16 +65,58 @@ namespace Demo
         }
         #endregion
 
+
+
+        void MatchTest(Matcher matcher, string keyword, string word)
+        {
+            Console.Write($"\r\nThe `{keyword}` on `{word}`: ");
+            // 4. Build cache for original strings
+            var matchCache = matcher.CreateStringCache(word);
+            // 5. Match with the keywords
+            var result = matcher.Match(matchCache, keyword);
+            // 6. print result
+            if (result.IsMatchAllKeywords == true)
+            {
+                // print where should be high-light
+                for (int i = 0; i < result.HitFlags.Count; i++)
+                {
+                    if (result.HitFlags[i] == true)
+                    {
+                        // high light
+                        Console.Write($"[{result.OriginalString[i]}]");
+                    }
+                    else
+                    {
+                        // normal
+                        Console.Write($"{result.OriginalString[i]}");
+                    }
+                }
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine("Not matched");
+                for (int i = 0; i < result.KeywordsMatchedFlags.Count; i++)
+                {
+                    if (result.KeywordsMatchedFlags[i] == false)
+                    {
+                        Console.WriteLine($"{result.Keywords[i]} was not matched");
+                    }
+                }
+            }
+        }
+
+
         private void Test()
         {
             // 1. Get the names of available matchers
-            var availableProviderNames = VariableKeywordMatcher.Builder.GetAvailableProviderNames().ToList();
+            var availableProviderNames = VariableKeywordMatcherIn1.Builder.GetAvailableProviderNames().ToList();
             // 2. Make a list of which providers you want to use.
             var enabledProviderNames = new List<string>();
             enabledProviderNames.Add(availableProviderNames[0]);
             enabledProviderNames.Add(availableProviderNames[1]);
             // 3. Create the matcher(case sensitive = false)
-            var matcher = VariableKeywordMatcher.Builder.Build(enabledProviderNames, false);
+            var matcher = VariableKeywordMatcherIn1.Builder.Build(enabledProviderNames, false);
             // 4. Build cache for original strings
             var matchCache = matcher.CreateStringCache("Hello World");
             // 5. Match with the keywords
@@ -94,8 +137,8 @@ namespace Demo
                         // normal
                         Console.Write($"{result.OriginalString[i]}");
                     }
-                    Console.WriteLine();
                 }
+                Console.WriteLine();
             }
             else
             {
@@ -108,6 +151,9 @@ namespace Demo
                     }
                 }
             }
+            MatchTest(matcher, "he wo", "Hello World");
+            MatchTest(matcher, "nihao", "你好世界");
+            MatchTest(matcher, "sj", "你好世界");
         }
 
         private VariableKeywordMatcher.Matcher _matcher;
@@ -121,18 +167,18 @@ namespace Demo
             Test();
 
             // get all available match providers, and show them on list view by binding AvailableMatcherProviders
-            var availableProviderNames = VariableKeywordMatcher.Builder.GetAvailableProviderNames();
+            var availableProviderNames = VariableKeywordMatcherIn1.Builder.GetAvailableProviderNames();
             foreach (var enumProviderType in availableProviderNames)
             {
                 AvailableMatcherProviders.Add(new MatchProviderInfo()
                 {
                     Name = enumProviderType,
-                    Title1 = VariableKeywordMatcher.Builder.GetProviderDescription(enumProviderType),
-                    Title2 = VariableKeywordMatcher.Builder.GetProviderDescriptionEn(enumProviderType),
+                    Title1 = VariableKeywordMatcherIn1.Builder.GetProviderDescription(enumProviderType),
+                    Title2 = VariableKeywordMatcherIn1.Builder.GetProviderDescriptionEn(enumProviderType),
                     Enabled = true,
                 });
             }
-            _matcher = VariableKeywordMatcher.Builder.Build(availableProviderNames);
+            _matcher = VariableKeywordMatcherIn1.Builder.Build(availableProviderNames);
 
 
             // init all original strings
@@ -177,7 +223,7 @@ namespace Demo
                     || enabledMatcher.Any(x => _matcher.ProviderTypes.Contains(x.Name) == false))
                 {
                     // rebuild
-                    _matcher = VariableKeywordMatcher.Builder.Build(enabledMatcher.Select(x => x.Name));
+                    _matcher = VariableKeywordMatcherIn1.Builder.Build(enabledMatcher.Select(x => x.Name));
                 }
 
                 // do the match
