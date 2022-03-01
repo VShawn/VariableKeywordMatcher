@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using VariableKeywordMatcher.Interface;
 
 namespace VariableKeywordMatcher.Model
@@ -29,6 +30,6 @@ namespace VariableKeywordMatcher.Model
         /// <summary>
         /// caches for matching of original string
         /// </summary>
-        public Dictionary<string, ISpellCache> SpellCaches { get; set; } = new Dictionary<string, ISpellCache>();
+        public ConcurrentDictionary<string, ISpellCache> SpellCaches { get; set; } = new ConcurrentDictionary<string, ISpellCache>();
     }
 }

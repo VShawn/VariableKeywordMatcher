@@ -74,13 +74,10 @@ namespace VariableKeywordMatcher.Provider.JapaneseRomaji
 
         public override void AppendDescriptions(ref MatchCache matchCache)
         {
-            if (matchCache.SpellCaches.ContainsKey(nameof(JapaneseRomajiProvider)))
-                matchCache.SpellCaches.Remove(nameof(JapaneseRomajiProvider));
-
             var ps = GetRomaji(matchCache.OriginalString);
             if (ps?.Count == 0)
             {
-                matchCache.SpellCaches.Add(nameof(JapaneseRomajiProvider), new SpellCache4JapaneseRomaji(GetName(), "", new List<List<int>>(), new List<bool>() { false }, new List<bool>() { false }));
+                matchCache.SpellCaches.AddOrUpdate(nameof(JapaneseRomajiProvider), new SpellCache4JapaneseRomaji(GetName(), "", new List<List<int>>(), new List<bool>() { false }, new List<bool>() { false }), (key, value) => value);
                 return;
             }
 
@@ -140,7 +137,7 @@ namespace VariableKeywordMatcher.Provider.JapaneseRomaji
             Debug.Assert(sb.Length == convertFlag.Count);
             Debug.Assert(sb.Length == beginFlag.Count);
             var sp = new SpellCache4JapaneseRomaji(GetName(), sb.ToString(), indexes, convertFlag, beginFlag);
-            matchCache.SpellCaches.Add(nameof(JapaneseRomajiProvider), sp);
+            matchCache.SpellCaches.AddOrUpdate(nameof(JapaneseRomajiProvider), sp, (key, value) => value);
         }
 
         protected override MatchResult DoFindMatches(MatchCache matchCache, IEnumerable<string> keywords, IEnumerable<string> keywordsInTrueCase)

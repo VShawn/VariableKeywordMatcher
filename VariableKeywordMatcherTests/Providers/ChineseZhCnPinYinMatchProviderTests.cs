@@ -123,8 +123,8 @@ namespace VariableKeywordMatcherTests.Providers
                 Assert.IsTrue(ret.IsMatchAllKeywords == false);
             }
 
-            var test = new MatchCache("多重多次，行中Ab, ");
-            matcher.AppendDescriptions(ref test);
+            var testNoCase = new MatchCache("多重多次，行中Ab, ");
+            matcher.AppendDescriptions(ref testNoCase);
 
             {
                 var kws = new[] { "A" };
@@ -143,10 +143,10 @@ namespace VariableKeywordMatcherTests.Providers
             }
             {
                 var kws = new[] { "DUOC" };
-                var ret = matcher.DoMatches(new MatchCache(test.OriginalString), kws);
+                var ret = matcher.DoMatches(new MatchCache(testNoCase.OriginalString), kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == true);
                 var m = ret.HitFlags;
-                Assert.IsTrue(m.Count == test.StringLength
+                Assert.IsTrue(m.Count == testNoCase.StringLength
                               && m[0] == true
                               && m[1] == true
                               && m[2] == true
@@ -162,11 +162,11 @@ namespace VariableKeywordMatcherTests.Providers
 
             {
                 var kws = new[] { "DUOCHONG" };
-                matcher.AppendDescriptions(ref test);
-                var ret = matcher.DoMatches(test, kws);
+                matcher.AppendDescriptions(ref testNoCase);
+                var ret = matcher.DoMatches(testNoCase, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == true);
                 var m = ret.HitFlags;
-                Assert.IsTrue(m.Count == test.StringLength
+                Assert.IsTrue(m.Count == testNoCase.StringLength
                               && m[0] == true
                               && m[1] == true
                               && m[2] == false
@@ -182,10 +182,10 @@ namespace VariableKeywordMatcherTests.Providers
 
             {
                 var kws = new[] { "DUOZHONG", "Hangzhong" };
-                var ret = matcher.DoMatches(test, kws);
+                var ret = matcher.DoMatches(testNoCase, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == true);
                 var m = ret.HitFlags;
-                Assert.IsTrue(m.Count == test.StringLength
+                Assert.IsTrue(m.Count == testNoCase.StringLength
                               && m[0] == true
                               && m[1] == true
                               && m[2] == false
@@ -201,10 +201,10 @@ namespace VariableKeywordMatcherTests.Providers
 
             {
                 var kws = new[] { "XingZhongA" };
-                var ret = matcher.DoMatches(test, kws);
+                var ret = matcher.DoMatches(testNoCase, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == true);
                 var m = ret.HitFlags;
-                Assert.IsTrue(m.Count == test.StringLength
+                Assert.IsTrue(m.Count == testNoCase.StringLength
                               && m[0] == false
                               && m[1] == false
                               && m[2] == false
@@ -220,10 +220,10 @@ namespace VariableKeywordMatcherTests.Providers
 
             {
                 var kws = new[] { "XingZhonga" };
-                var ret = matcher.DoMatches(test, kws);
+                var ret = matcher.DoMatches(testNoCase, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == true);
                 var m = ret.HitFlags;
-                Assert.IsTrue(m.Count == test.StringLength
+                Assert.IsTrue(m.Count == testNoCase.StringLength
                               && m[0] == false
                               && m[1] == false
                               && m[2] == false
@@ -239,10 +239,10 @@ namespace VariableKeywordMatcherTests.Providers
 
             {
                 var kws = new[] { "HangZhongA" };
-                var ret = matcher.DoMatches(test, kws);
+                var ret = matcher.DoMatches(testNoCase, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == true);
                 var m = ret.HitFlags;
-                Assert.IsTrue(m.Count == test.StringLength
+                Assert.IsTrue(m.Count == testNoCase.StringLength
                               && m[0] == false
                               && m[1] == false
                               && m[2] == false
@@ -258,10 +258,10 @@ namespace VariableKeywordMatcherTests.Providers
 
             {
                 var kws = new[] { "HangZhonga" };
-                var ret = matcher.DoMatches(test, kws);
+                var ret = matcher.DoMatches(testNoCase, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == true);
                 var m = ret.HitFlags;
-                Assert.IsTrue(m.Count == test.StringLength
+                Assert.IsTrue(m.Count == testNoCase.StringLength
                               && m[0] == false
                               && m[1] == false
                               && m[2] == false
@@ -277,10 +277,10 @@ namespace VariableKeywordMatcherTests.Providers
 
             {
                 var kws = new[] { "XINGZhongAb" };
-                var ret = matcher.DoMatches(test, kws);
+                var ret = matcher.DoMatches(testNoCase, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == true);
                 var m = ret.HitFlags;
-                Assert.IsTrue(m.Count == test.StringLength
+                Assert.IsTrue(m.Count == testNoCase.StringLength
                               && m[0] == false
                               && m[1] == false
                               && m[2] == false
@@ -296,10 +296,10 @@ namespace VariableKeywordMatcherTests.Providers
 
             {
                 var kws = new[] { "aB", "," };
-                var ret = matcher.DoMatches(test, kws);
+                var ret = matcher.DoMatches(testNoCase, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == true);
                 var m = ret.HitFlags;
-                Assert.IsTrue(m.Count == test.StringLength
+                Assert.IsTrue(m.Count == testNoCase.StringLength
                               && m[0] == false
                               && m[1] == false
                               && m[2] == false
@@ -315,10 +315,10 @@ namespace VariableKeywordMatcherTests.Providers
 
             {
                 var kws = new[] { "，", ", " };
-                var ret = matcher.DoMatches(test, kws);
+                var ret = matcher.DoMatches(testNoCase, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == true);
                 var m = ret.HitFlags;
-                Assert.IsTrue(m.Count == test.StringLength
+                Assert.IsTrue(m.Count == testNoCase.StringLength
                               && m[0] == false
                               && m[1] == false
                               && m[2] == false
@@ -367,7 +367,7 @@ namespace VariableKeywordMatcherTests.Providers
                 var ret = matcherCase.DoMatches(new MatchCache("多重多次，行中Ab, "), kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == true);
                 var m = ret.HitFlags;
-                Assert.IsTrue(m.Count == test.StringLength
+                Assert.IsTrue(m.Count == testNoCase.StringLength
                               && m[0] == true
                               && m[1] == true
                               && m[2] == false
@@ -383,11 +383,11 @@ namespace VariableKeywordMatcherTests.Providers
 
             {
                 var kws = new[] { "DuoC" };
-                matcherCase.AppendDescriptions(ref test);
-                var ret = matcherCase.DoMatches(test, kws);
+                matcherCase.AppendDescriptions(ref testNoCase);
+                var ret = matcherCase.DoMatches(testNoCase, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == true);
                 var m = ret.HitFlags;
-                Assert.IsTrue(m.Count == test.StringLength
+                Assert.IsTrue(m.Count == testNoCase.StringLength
                               && m[0] == true
                               && m[1] == true
                               && m[2] == true
@@ -403,10 +403,10 @@ namespace VariableKeywordMatcherTests.Providers
 
             {
                 var kws = new[] { "Duoz", "HangZ" };
-                var ret = matcherCase.DoMatches(test, kws);
+                var ret = matcherCase.DoMatches(testNoCase, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == true);
                 var m = ret.HitFlags;
-                Assert.IsTrue(m.Count == test.StringLength
+                Assert.IsTrue(m.Count == testNoCase.StringLength
                               && m[0] == true
                               && m[1] == true
                               && m[2] == false
@@ -422,10 +422,10 @@ namespace VariableKeywordMatcherTests.Providers
 
             {
                 var kws = new[] { "Duoz", "XingZ" };
-                var ret = matcherCase.DoMatches(test, kws);
+                var ret = matcherCase.DoMatches(testNoCase, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == true);
                 var m = ret.HitFlags;
-                Assert.IsTrue(m.Count == test.StringLength
+                Assert.IsTrue(m.Count == testNoCase.StringLength
                               && m[0] == true
                               && m[1] == true
                               && m[2] == false
@@ -440,12 +440,14 @@ namespace VariableKeywordMatcherTests.Providers
             }
 
 
+            var testCase = new MatchCache("多重多次，行中Ab, ");
+            matcherCase.AppendDescriptions(ref testCase);
             {
                 var kws = new[] { "XingZhongA" };
-                var ret = matcherCase.DoMatches(test, kws);
+                var ret = matcherCase.DoMatches(testCase, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == true);
                 var m = ret.HitFlags;
-                Assert.IsTrue(m.Count == test.StringLength
+                Assert.IsTrue(m.Count == testNoCase.StringLength
                               && m[0] == false
                               && m[1] == false
                               && m[2] == false
@@ -461,16 +463,16 @@ namespace VariableKeywordMatcherTests.Providers
 
             {
                 var kws = new[] { "XingZhonga" };
-                var ret = matcherCase.DoMatches(test, kws);
+                var ret = matcherCase.DoMatches(testCase, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == false);
             }
 
             {
                 var kws = new[] { "HangZhongA" };
-                var ret = matcherCase.DoMatches(test, kws);
+                var ret = matcherCase.DoMatches(testCase, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == true);
                 var m = ret.HitFlags;
-                Assert.IsTrue(m.Count == test.StringLength
+                Assert.IsTrue(m.Count == testNoCase.StringLength
                               && m[0] == false
                               && m[1] == false
                               && m[2] == false
@@ -486,19 +488,19 @@ namespace VariableKeywordMatcherTests.Providers
 
             {
                 var kws = new[] { "HangZhonga" };
-                var ret = matcherCase.DoMatches(test, kws);
+                var ret = matcherCase.DoMatches(testCase, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == false);
             }
 
             {
                 var kws = new[] { "xingzhongab" };
-                var ret = matcherCase.DoMatches(test, kws);
+                var ret = matcherCase.DoMatches(testCase, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == false);
             }
 
             {
                 var kws = new[] { "aB", "," };
-                var ret = matcherCase.DoMatches(test, kws);
+                var ret = matcherCase.DoMatches(testCase, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == false);
             }
 
@@ -506,10 +508,10 @@ namespace VariableKeywordMatcherTests.Providers
 
             {
                 var kws = new[] { "，", ", " };
-                var ret = matcherCase.DoMatches(test, kws);
+                var ret = matcherCase.DoMatches(testCase, kws);
                 Assert.IsTrue(ret.IsMatchAllKeywords == true);
                 var m = ret.HitFlags;
-                Assert.IsTrue(m.Count == test.StringLength
+                Assert.IsTrue(m.Count == testNoCase.StringLength
                               && m[0] == false
                               && m[1] == false
                               && m[2] == false

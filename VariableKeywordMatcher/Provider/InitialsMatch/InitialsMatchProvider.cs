@@ -65,7 +65,7 @@ namespace VariableKeywordMatcher.Provider.InitialsMatch
         public override void AppendDescriptions(ref MatchCache matchCache)
         {
             if (matchCache.SpellCaches.ContainsKey(nameof(InitialsMatchProvider)))
-                matchCache.SpellCaches.Remove(nameof(InitialsMatchProvider));
+                matchCache.SpellCaches.TryRemove(nameof(InitialsMatchProvider), out _);
 
             var sp = new SpellCache(GetProviderName(), matchCache.StringLength);
 
@@ -84,7 +84,7 @@ namespace VariableKeywordMatcher.Provider.InitialsMatch
                 }
 
             }
-            matchCache.SpellCaches.Add(nameof(InitialsMatchProvider), sp);
+            matchCache.SpellCaches.AddOrUpdate(nameof(InitialsMatchProvider), sp, (key, value) => value);
         }
 
         protected override MatchResult DoFindMatches(MatchCache matchCache, IEnumerable<string> keywords, IEnumerable<string> keywordsInTrueCase)

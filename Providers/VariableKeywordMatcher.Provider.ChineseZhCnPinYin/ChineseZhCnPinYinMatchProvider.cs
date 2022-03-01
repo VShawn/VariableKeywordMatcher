@@ -58,9 +58,6 @@ namespace VariableKeywordMatcher.Provider.ChineseZhCnPinYin
         /// <returns></returns>
         public override void AppendDescriptions(ref MatchCache matchCache)
         {
-            if (matchCache.SpellCaches.ContainsKey(nameof(ChineseZhCnPinYinMatchProvider)))
-                matchCache.SpellCaches.Remove(nameof(ChineseZhCnPinYinMatchProvider));
-
             var sp = new SpellCache(GetProviderName(), matchCache.StringLength);
 
             // set PinYin chart cache
@@ -85,7 +82,7 @@ namespace VariableKeywordMatcher.Provider.ChineseZhCnPinYin
             // no Chinese character.
             if (sp.Units.All(x => x.Count == 0))
             {
-                matchCache.SpellCaches.Add(nameof(ChineseZhCnPinYinMatchProvider), new SpellCache(GetProviderName(), matchCache.StringLength));
+                matchCache.SpellCaches.AddOrUpdate(nameof(ChineseZhCnPinYinMatchProvider), new SpellCache(GetProviderName(), matchCache.StringLength), (key, value) => value);
                 return;
             }
 
@@ -100,7 +97,7 @@ namespace VariableKeywordMatcher.Provider.ChineseZhCnPinYin
                 }
             }
 
-            matchCache.SpellCaches.Add(nameof(ChineseZhCnPinYinMatchProvider), sp);
+            matchCache.SpellCaches.AddOrUpdate(nameof(ChineseZhCnPinYinMatchProvider), sp, (key, value) => value);
         }
 
         protected override MatchResult DoFindMatches(MatchCache matchCache, IEnumerable<string> keywords, IEnumerable<string> keywordsInTrueCase)

@@ -17,16 +17,21 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <NeutralLanguage></NeutralLanguage>
     <PackageIcon>icon-100.png</PackageIcon>
-    <Version>1.0.7</Version>
+    <Version>1.0.10</Version>
     <Authors>VShawn</Authors>
     <Product>VariableKeywordMatcher</Product>
     <Company>VShawn</Company>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\doc\icons\icon-100.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+    </None>
+    <None Include="..\readme.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 

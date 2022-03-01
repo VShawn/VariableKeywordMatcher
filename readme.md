@@ -55,7 +55,7 @@ var matcher = VariableKeywordMatcher.Builder.Build(enabledProviderNames);
 ```C#
 var matchCache = matcher.CreateStringCache("Hello World");
 ```
- 
+
 5. Match with the keywords
 
 ```C#

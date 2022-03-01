@@ -17,10 +17,11 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <NeutralLanguage></NeutralLanguage>
     <PackageIcon>icon-100.png</PackageIcon>
-    <Version>1.0.8</Version>
+    <Version>1.0.10</Version>
     <Authors>VShawn</Authors>
     <Product>VariableKeywordMatcherIn1</Product>
     <Company>VShawn</Company>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
@@ -35,6 +36,10 @@
     <None Include="..\doc\icons\icon-100.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+    </None>
+    <None Include="..\readme.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 

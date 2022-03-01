@@ -8,10 +8,11 @@
 		<Description>VariableKeywordMatcher.Provider.JapaneseRomaji is the Japanese Romaji matcher(plugin) for VariableKeywordMatcher or VariableKeywordMatcherIn1. e.g. "konni" will hit "こんにちは".</Description>
 		<RepositoryUrl>https://github.com/VShawn/VariableKeywordMatcher</RepositoryUrl>
 		<PackageTags>Keyword matcher highlight Japanese</PackageTags>
-		<Version>1.0.7</Version>
+		<Version>1.0.10</Version>
 		<PackageProjectUrl>https://github.com/VShawn/VariableKeywordMatcher</PackageProjectUrl>
 		<Authors>VShawn</Authors>
 		<Product>VariableKeywordMatcher</Product>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -33,6 +34,10 @@
 	  <None Include="..\..\doc\icons\icon-100.png">
 	    <Pack>True</Pack>
 	    <PackagePath></PackagePath>
+	  </None>
+	  <None Include="..\..\readme.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
 	  </None>
 	</ItemGroup>
 
