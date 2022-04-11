@@ -40,7 +40,7 @@ namespace VariableKeywordMatcherIn1
 
             try
             {
-                var files = Directory.GetFiles(Directory.GetParent(typeof(Builder).Assembly.Location).FullName, "*.dll");
+                var files = Directory.GetFiles(Directory.GetParent(typeof(Builder).Assembly.Location).FullName, "VariableKeywordMatcher.Provider.*.dll");
                 foreach (var dllPath in files)
                 {
                     var assembly = Assembly.LoadFile(dllPath);
