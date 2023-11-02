@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using VariableKeywordMatcher.Interface;
@@ -54,14 +55,43 @@ namespace VariableKeywordMatcher
         /// </summary>
         /// <param name="matchCache">cache of the original string</param>
         /// <param name="keywords">list of keywords</param>
+        /// <param name="taskCount">number of tasks to run in parallel, 1 by default</param>
         /// <returns></returns>
-        public MatchResult Match(MatchCache matchCache, IEnumerable<string> keywords)
+        public MatchResult Match(MatchCache matchCache, IEnumerable<string> keywords, int taskCount = 1)
         {
             CheckProviders();
-            var result = MatchResult.CreateUnmatchedResult(matchCache.OriginalString, keywords, IsCaseSensitive);
-            foreach (var r in _providers.Select(provider => provider.DoMatches(matchCache, keywords)))
+            var kws = keywords as string[] ?? keywords.ToArray();
+            var result = MatchResult.CreateUnmatchedResult(matchCache.OriginalString, kws, IsCaseSensitive);
+
+            if (taskCount > 1 && _providers.Count > 1)
             {
-                result.Merge(r);
+                var results = new ConcurrentQueue<MatchResult>();
+                var providers = new ConcurrentQueue<MatchProviderBase>(_providers);
+                var tasks = new List<System.Threading.Tasks.Task>();
+                for (int i = 0; i < taskCount && i < _providers.Count; i++)
+                {
+                    tasks.Add(System.Threading.Tasks.Task.Run(() =>
+                    {
+                        while (providers.TryDequeue(out var provider))
+                        {
+                            var r = provider.DoMatches(matchCache, kws);
+                            results.Enqueue(r);
+                        }
+                    }));
+                }
+                // wait for all tasks to finish
+                System.Threading.Tasks.Task.WaitAll(tasks.ToArray());
+                foreach (var r in results)
+                {
+                    result.Merge(r);
+                }
+            }
+            else
+            {
+                foreach (var r in _providers.Select(provider => provider.DoMatches(matchCache, keywords)))
+                {
+                    result.Merge(r);
+                }
             }
             return result;
         }
@@ -71,10 +101,11 @@ namespace VariableKeywordMatcher
         /// </summary>
         /// <param name="matchCache">cache of the original string</param>
         /// <param name="keyword">single keyword</param>
+        /// <param name="taskCount">number of tasks to run in parallel, 1 by default</param>
         /// <returns></returns>
-        public MatchResult Match(MatchCache matchCache, string keyword)
+        public MatchResult Match(MatchCache matchCache, string keyword, int taskCount = 1)
         {
-            return Match(matchCache, new[] { keyword });
+            return Match(matchCache, new[] { keyword }, taskCount);
         }
 
         /// <summary>
@@ -82,11 +113,12 @@ namespace VariableKeywordMatcher
         /// </summary>
         /// <param name="originalString">original string</param>
         /// <param name="keywords">list of keywords</param>
+        /// <param name="taskCount">number of tasks to run in parallel, 1 by default</param>
         /// <returns></returns>
-        public MatchResult Match(string originalString, IEnumerable<string> keywords)
+        public MatchResult Match(string originalString, IEnumerable<string> keywords, int taskCount = 1)
         {
             var mc = CreateStringCache(originalString);
-            return Match(mc, keywords);
+            return Match(mc, keywords, taskCount);
         }
 
         /// <summary>
@@ -94,11 +126,12 @@ namespace VariableKeywordMatcher
         /// </summary>
         /// <param name="originalString">original string</param>
         /// <param name="keyword"></param>
+        /// <param name="taskCount">number of tasks to run in parallel, 1 by default</param>
         /// <returns></returns>
-        public MatchResult Match(string originalString, string keyword)
+        public MatchResult Match(string originalString, string keyword, int taskCount = 1)
         {
             var mc = CreateStringCache(originalString);
-            return Match(mc, new[] { keyword });
+            return Match(mc, new[] { keyword }, taskCount);
         }
 
         /// <summary>
@@ -106,20 +139,45 @@ namespace VariableKeywordMatcher
         /// </summary>
         /// <param name="matchCaches">caches of the original strings</param>
         /// <param name="keywords"></param>
+        /// <param name="taskCount">number of tasks to run in parallel, 1 by default</param>
         /// <returns></returns>
-        public MatchResults Matchs(List<MatchCache> matchCaches, IEnumerable<string> keywords)
+        public MatchResults Matchs(List<MatchCache> matchCaches, IEnumerable<string> keywords, int taskCount = 1)
         {
             var mrs = new List<MatchResult>(matchCaches.Count);
-            foreach (var matchCache in matchCaches)
+            var kws = keywords as string[] ?? keywords.ToArray();
+            if (taskCount == 1)
             {
-                var mr = Match(matchCache, keywords);
-                mrs.Add(mr);
+                foreach (var matchCache in matchCaches)
+                {
+                    var mr = Match(matchCache, kws, taskCount);
+                    mrs.Add(mr);
+                }
             }
-
-            var ret = new MatchResults(matchCaches.Select(x => x.OriginalString).ToList(), keywords,
-                this.IsCaseSensitive, mrs);
-
-            return ret;
+            else
+            {
+                var results = new ConcurrentDictionary<int, MatchResult>(); // index, result to keep the order
+                var caches = new ConcurrentQueue<MatchCache>(matchCaches);
+                var tasks = new List<System.Threading.Tasks.Task>();
+                for (int i = 0; i < taskCount && i < matchCaches.Count; i++)
+                {
+                    tasks.Add(System.Threading.Tasks.Task.Run(() =>
+                    {
+                        while (caches.TryDequeue(out var cache))
+                        {
+                            var r = Match(cache, kws, 2);
+                            results.TryAdd(matchCaches.IndexOf(cache), r);
+                        }
+                    }));
+                }
+                // wait for all tasks to finish
+                System.Threading.Tasks.Task.WaitAll(tasks.ToArray());
+                // get the results in order
+                foreach (var r in results.OrderBy(x => x.Key))
+                {
+                    mrs.Add(r.Value);
+                }
+            }
+            return new MatchResults(matchCaches.Select(x => x.OriginalString).ToList(), kws, this.IsCaseSensitive, mrs);
         }
 
         private void CheckProviders()

@@ -285,10 +285,17 @@ namespace VariableKeywordMatcherTests
             List<MatchCache> caches = new List<MatchCache>();
             caches.Add(new MatchCache("HelloWorld 你好世界！"));
             caches.Add(new MatchCache("NH 1234"));
+            caches.Add(new MatchCache("测试测试测试测试"));
+            caches.Add(new MatchCache("zxvasrw 123123 fdgadg 123 hell"));
+            caches.Add(new MatchCache("aaabbb123123 大顶堆"));
+            caches.Add(new MatchCache("Florida attorney general, against criticism, seeks to keep abortion rights amendment off 2024 ballot \r\n"));
+            caches.Add(new MatchCache("In a reversal, Schumer says he will move forward to confirm hundreds military promotions previously held up by Tuberville"));
 
             var matcher = Builder.Build(new[] { DirectMatchProvider.GetName(), ChineseZhCnPinYinMatchProvider.GetName() }, false);
+            matcher.Matchs(caches, new string[] { "hell", "123" });
 
             {
+                DateTime start = DateTime.Now;
                 var r = matcher.Matchs(caches, new string[] { "hell", "123" });
                 Assert.IsTrue(r.IsMatchAllKeywords);
                 Assert.IsTrue(r.HitFlags[0][0] == true
@@ -305,10 +312,35 @@ namespace VariableKeywordMatcherTests
                               && r.HitFlags[1][5] == true
                               && r.HitFlags[1][6] == false
                 );
+                DateTime end = DateTime.Now;
+                Console.WriteLine($"MatchsTest: {end - start}");
             }
 
             {
-                var r = matcher.Matchs(caches, new string[] { "hell", "123", "xx" });
+                DateTime start = DateTime.Now;
+                var r = matcher.Matchs(caches, new string[] { "hell", "123" }, 2);
+                Assert.IsTrue(r.IsMatchAllKeywords);
+                Assert.IsTrue(r.HitFlags[0][0] == true
+                              && r.HitFlags[0][1] == true
+                              && r.HitFlags[0][2] == true
+                              && r.HitFlags[0][3] == true
+                              && r.HitFlags[0][4] == false
+                              && r.HitFlags[0][5] == false
+                              && r.HitFlags[1][0] == false
+                              && r.HitFlags[1][1] == false
+                              && r.HitFlags[1][2] == false
+                              && r.HitFlags[1][3] == true
+                              && r.HitFlags[1][4] == true
+                              && r.HitFlags[1][5] == true
+                              && r.HitFlags[1][6] == false
+                );
+                DateTime end = DateTime.Now;
+                Console.WriteLine($"MatchsTest tasks: {end - start}");
+            }
+
+            {
+                DateTime start = DateTime.Now;
+                var r = matcher.Matchs(caches, new string[] { "hell", "123", "xx1X" });
                 Assert.IsTrue(r.IsMatchAllKeywords == false);
                 Assert.IsTrue(r.HitFlags[0][0] == true
                               && r.HitFlags[0][1] == true
@@ -324,6 +356,30 @@ namespace VariableKeywordMatcherTests
                               && r.HitFlags[1][5] == true
                               && r.HitFlags[1][6] == false
                 );
+                DateTime end = DateTime.Now;
+                Console.WriteLine($"MatchsTest: {end - start}");
+            }
+
+            {
+                DateTime start = DateTime.Now;
+                var r = matcher.Matchs(caches, new string[] { "hell", "123", "xx1X" }, 2);
+                Assert.IsTrue(r.IsMatchAllKeywords == false);
+                Assert.IsTrue(r.HitFlags[0][0] == true
+                              && r.HitFlags[0][1] == true
+                              && r.HitFlags[0][2] == true
+                              && r.HitFlags[0][3] == true
+                              && r.HitFlags[0][4] == false
+                              && r.HitFlags[0][5] == false
+                              && r.HitFlags[1][0] == false
+                              && r.HitFlags[1][1] == false
+                              && r.HitFlags[1][2] == false
+                              && r.HitFlags[1][3] == true
+                              && r.HitFlags[1][4] == true
+                              && r.HitFlags[1][5] == true
+                              && r.HitFlags[1][6] == false
+                );
+                DateTime end = DateTime.Now;
+                Console.WriteLine($"MatchsTest tasks: {end - start}");
             }
         }
 
